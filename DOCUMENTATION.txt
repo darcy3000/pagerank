@@ -1,0 +1,55 @@
+********************IMPLEMENTATION OF PAGERANK ALGORITHM********************
+
+Team Members 
+Navneet Kumar:2015A7PS0080H
+Rajat Biswas:2015A7PS0107H
+Abhijeet Bajaj:2015A7PS0111H
+Raunak Ritesh:2015A7PS0160H
+
+Packages used:
+	Networkx
+	Numpy
+	Matplotlib
+	Regex
+	BeautifulSoup
+	Heap
+
+Cleaning the corpus by removing "png.html","jpg.html","gif.html" to reduce the number of nodes in a graph.
+
+
+Constructing the Graph from HTML Pages:
+	Step 1)
+		Read the corpus and draw a directed edge between two pages if there is a hyperlink between them.
+	Step 2)
+		Translate the adjacency list into graph by using networkx module
+	Step 3)
+		For Visualisation purposes take a subgraph of the original graph with roughly 30 vertices.
+	Step 4)
+		Draw using networkx by providing approriate layout
+
+Computing the Rank vectors:
+	Step 1)
+		Computing the transition matrix.
+		T[i][j] =1/(out degree of j if there is an edge from j to i)
+	Step 2)
+		Taking care of Spider traps and Dead Ends.
+		Creating an array(E) of same dimensions and adding a small number of the column is a "Trusted Page".
+	Step 3)
+		Creating the final matrix for power iteration.
+		A=(beta)*T+(1-beta)*E where beta controls the random jumps.
+	Step 4)
+		Normalising the columns of A  so sum of all values in a column is 1 for all columns so as to make the matrix A as column stochastic and there is leak pf page rank.
+	Step 5)
+		Initialising the Rank vector R.
+	Step 6)
+		Power Itertaion over k itertaions where k is sufficiently large number.
+		R=A*R
+		Storing the rank vector after each iteration for plotting.
+	Step 7)
+		Plotting the above vectors in the form of convulations over time or iterations using matplotlib.
+
+Querying
+	Step 1)
+		Reading the precomputed rank vectors.
+	Step 2)
+		For each query scan through each HTML web page and look for the query string in A tags or B tags or H tags or Span tags and add the score approriately.
